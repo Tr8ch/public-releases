@@ -71,39 +71,25 @@
 
     <script>
       fetch("registry.json")
-        .then((response) => response.json())
+        .then((res) => res.json())
         .then((data) => {
-          const modules = [
-            "DoodocsHR_ModulOtpravki_BP",
-            "DoodocsHR_ModulPriema_BP",
-            "ModulIntegrazii-ZUP",
-            "ModulOtpravki-ZUP",
-            "ModulPriema-ZUP",
-          ];
-
           const tbody = document.getElementById("registry-body");
+          const entries = Object.entries(data).reverse();
 
-          modules.forEach((module) => {
-            const info = data[module] || {};
-
+          entries.forEach(([moduleName, info]) => {
             const row = document.createElement("tr");
 
-            row.innerHTML = `
-    <td>${module}</td>
-    <td class="version">${info.version || "-"}</td>
-    <td>${info.date || "-"}</td>
-    <td>${info.description || "-"}</td>
-    <td>
-        ${
-          info.download
-            ? `<a href="${info.download}" target="_blank">
-                <button class="download-btn">Скачать</button>
-            </a>`
-            : "-"
-        }
-    </td>
-`;
+            const downloadBtn = info.download
+              ? `<a href="${info.download}" target="_blank"><button class="download-btn">Скачать</button></a>`
+              : "-";
 
+            row.innerHTML = `
+                <td>${moduleName}</td>
+                <td class="version">${info.version || "-"}</td>
+                <td class="updated">${info.date || "-"}</td>
+                <td>${info.description || "-"}</td>
+                <td>${downloadBtn}</td>
+            `;
             tbody.appendChild(row);
           });
         });
