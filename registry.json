@@ -1,0 +1,12 @@
+{
+  "DoodocsHR_ModulOtpravki_BP": {
+    "version": "v1.2.0",
+    "date": "2026-03-03",
+    "description": "Исправлены ошибки"
+  },
+  "ModulPriema-ZUP": {
+    "version": "v2.1.0",
+    "date": "2026-03-02",
+    "description": "Добавлен новый функционал"
+  }
+}
